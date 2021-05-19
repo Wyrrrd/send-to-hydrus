@@ -1,5 +1,5 @@
-# send-to-hydrus
-Share URLs into Hydrus Client API
+# Send to Hydrus
+Share URLs on Android into Hydrus Client API
 
 ## How to setup
   - Download [HTTP Request Shortcuts](https://http-shortcuts.rmy.ch/)

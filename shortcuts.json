@@ -9,12 +9,12 @@
           "codeOnSuccess": "setVariable(/*[variable]*/\"2c7bf1c2-dabd-41fd-b572-8a67575f07c7\"/*[/variable]*/, JSON.parse(response.body).access_key);",
           "contentType": "application/json",
           "description": "Request an API key from Hydrus",
-          "iconName": "send-to-hydrus.png",
+          "iconName": "custom-icon_04e0e038-6af2-4bce-91fd-bece7728a1d3.png",
           "id": "b20986e7-40c5-4287-81c9-7a32f7f41913",
           "name": "Request key",
           "responseHandling": {
             "failureOutput": "simple",
-            "id": "d92f2cc0-c0f3-48d1-ae2b-3a41bf1e4de9",
+            "id": "e7e3bc62-4e79-4864-a301-9a3552dcb77a",
             "successMessage": "API key was saved.",
             "successOutput": "message",
             "uiType": "toast"
@@ -28,17 +28,17 @@
           "description": "Verifies API key with Hydrus",
           "headers": [
             {
-              "id": "7cb8e3f9-8c2b-4b56-8e97-48071be762d3",
+              "id": "08e815f3-0211-417c-ac30-dad66d3b4656",
               "key": "Hydrus-Client-API-Access-Key",
               "value": "{{2c7bf1c2-dabd-41fd-b572-8a67575f07c7}}"
             }
           ],
-          "iconName": "send-to-hydrus.png",
+          "iconName": "custom-icon_04e0e038-6af2-4bce-91fd-bece7728a1d3.png",
           "id": "923939ae-1e9a-4f69-89f2-820d30065d35",
           "name": "Verify key",
           "responseHandling": {
             "failureOutput": "simple",
-            "id": "c283b69d-058f-448d-a868-06de883566f9",
+            "id": "e6438001-2f6a-4275-958f-53cf3b521b74",
             "successOutput": "none",
             "uiType": "toast"
           },
@@ -50,18 +50,18 @@
           "description": "Sends a URL to Hydrus",
           "headers": [
             {
-              "id": "d60dde89-d0dd-424f-ba6c-e4b0aca1501c",
+              "id": "5ddf5c91-4ddb-42a9-baf2-f37ed05abd0a",
               "key": "Hydrus-Client-API-Access-Key",
               "value": "{{2c7bf1c2-dabd-41fd-b572-8a67575f07c7}}"
             }
           ],
-          "iconName": "send-to-hydrus.png",
+          "iconName": "custom-icon_04e0e038-6af2-4bce-91fd-bece7728a1d3.png",
           "id": "db09da4e-69ff-4500-8a6d-3b0adfd5cac9",
           "method": "POST",
           "name": "Send URL",
           "responseHandling": {
             "failureOutput": "simple",
-            "id": "71737e13-1818-453a-98e9-2414952368a5",
+            "id": "5ccff8f8-1f3b-4292-a865-0fb833f29c68",
             "successMessage": "{{4d098304-464a-4c2a-9e5e-e43b68c13814}} was sent to Hydrus.",
             "successOutput": "message",
             "uiType": "toast"
@@ -76,18 +76,16 @@
       "flags": 1,
       "id": "4d098304-464a-4c2a-9e5e-e43b68c13814",
       "key": "hydrus_add_url",
-      "type": "text",
-      "value": ""
+      "type": "text"
     },
     {
       "id": "2c7bf1c2-dabd-41fd-b572-8a67575f07c7",
-      "key": "hydrus_api_key",
-      "value": ""
+      "key": "hydrus_api_key"
     },
     {
       "id": "790c08b8-6204-4f7f-8e8e-e6a4806017bc",
       "key": "hydrus_url",
-      "value": "<Enter your client api url here>"
+      "value": "\u003cEnter your client api url here\u003e"
     }
   ],
   "version": 45

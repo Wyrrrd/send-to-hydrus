@@ -25,9 +25,8 @@ If you are using the older, URL-only version, your API key will not have the fil
   - Profit (?)
   
 ### Complicated way
-  - Copy URL to clipboard
   - Open HTTP Shortcuts
-  - Press "Send URL"
-  - Paste URL from clipboard
+  - Press "Send URL" / "Send file"
+  - Copy and Paste URL / Choose file to send
   - Press "OK"
   

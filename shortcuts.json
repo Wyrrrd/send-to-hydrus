@@ -14,21 +14,21 @@
           "name": "Request key",
           "responseHandling": {
             "failureOutput": "simple",
-            "id": "e7e3bc62-4e79-4864-a301-9a3552dcb77a",
             "successMessage": "API key was saved.",
             "successOutput": "message",
             "uiType": "toast"
           },
-          "url": "{{790c08b8-6204-4f7f-8e8e-e6a4806017bc}}/request_new_permissions?name\u003dPhone\u0026basic_permissions\u003d[0]"
+          "retryPolicy": "wait_for_internet",
+          "url": "{{790c08b8-6204-4f7f-8e8e-e6a4806017bc}}/request_new_permissions?name\u003dPhone\u0026basic_permissions\u003d[0,1]"
         },
         {
           "bodyContent": "{\n    \"url\" : \"{{4d098304-464a-4c2a-9e5e-e43b68c13814}}\",\n    \"destination_page_name\" : \"phone url import\"\n}",
-          "codeOnSuccess": "var toast \u003d \"API key is valid.\\n\"\nif (JSON.parse(response.body).basic_permissions.includes(0)) {\n  toast +\u003d \"URL permission granted.\";\n} else {\n  toast +\u003d \"URL permission missing!\";\n}\nshowToast(toast);",
+          "codeOnSuccess": "var toast \u003d \"API key is valid.\\n\"\nvar url \u003d JSON.parse(response.body).basic_permissions.includes(0)\nvar file \u003d JSON.parse(response.body).basic_permissions.includes(1)\n\nif (!url \u0026\u0026 !file) {\n  toast +\u003d \"All permissions missing!\";\n} else if (!url) {\n  toast +\u003d \"URL permission missing!\";\n} else if (!file) {\n  toast +\u003d \"File permission missing!\";\n}\n\nshowToast(toast);",
           "contentType": "application/json",
           "description": "Verifies API key with Hydrus",
           "headers": [
             {
-              "id": "08e815f3-0211-417c-ac30-dad66d3b4656",
+              "id": "d1eb5ba6-051a-4b44-91cb-dacda569be9d",
               "key": "Hydrus-Client-API-Access-Key",
               "value": "{{2c7bf1c2-dabd-41fd-b572-8a67575f07c7}}"
             }
@@ -38,11 +38,36 @@
           "name": "Verify key",
           "responseHandling": {
             "failureOutput": "simple",
-            "id": "e6438001-2f6a-4275-958f-53cf3b521b74",
             "successOutput": "none",
             "uiType": "toast"
           },
+          "retryPolicy": "wait_for_internet",
           "url": "{{790c08b8-6204-4f7f-8e8e-e6a4806017bc}}/verify_access_key"
+        },
+        {
+          "codeOnSuccess": "var toast \u003d \"File \"\nvar status \u003d JSON.parse(response.body).status\n\nswitch (status) {\n case 1:\n  toast +\u003d \"was successfully imported.\";\n  break;\n case 2:\n  toast +\u003d \"already in database.\";\n  break;\n case 3:\n  toast +\u003d \"previously deleted.\";\n  break;\n case 4:\n  toast +\u003d \"failed to import.\";\n  break;\n case 7:\n  toast +\u003d \"vetoed.\";\n  break;\n}\n\nshowToast(toast);",
+          "contentType": "application/octet-stream",
+          "description": "Sends a file to Hydrus",
+          "headers": [
+            {
+              "id": "ea2f7272-29a1-4608-b0db-cfe804ff08f7",
+              "key": "Hydrus-Client-API-Access-Key",
+              "value": "{{2c7bf1c2-dabd-41fd-b572-8a67575f07c7}}"
+            }
+          ],
+          "iconName": "custom-icon_04e0e038-6af2-4bce-91fd-bece7728a1d3.png",
+          "id": "22484fb3-bff9-470c-a699-38aaf825331f",
+          "method": "POST",
+          "name": "Send file",
+          "requestBodyType": "file",
+          "responseHandling": {
+            "failureOutput": "simple",
+            "successMessage": "File was sent to Hydrus.",
+            "successOutput": "none",
+            "uiType": "toast"
+          },
+          "retryPolicy": "wait_for_internet",
+          "url": "{{790c08b8-6204-4f7f-8e8e-e6a4806017bc}}/add_files/add_file"
         },
         {
           "bodyContent": "{\n    \"url\" : \"{{4d098304-464a-4c2a-9e5e-e43b68c13814}}\",\n    \"destination_page_name\" : \"phone url import\"\n}",
@@ -50,7 +75,7 @@
           "description": "Sends a URL to Hydrus",
           "headers": [
             {
-              "id": "5ddf5c91-4ddb-42a9-baf2-f37ed05abd0a",
+              "id": "ea7dead9-05ee-4494-9ab3-67d0606428be",
               "key": "Hydrus-Client-API-Access-Key",
               "value": "{{2c7bf1c2-dabd-41fd-b572-8a67575f07c7}}"
             }
@@ -61,11 +86,11 @@
           "name": "Send URL",
           "responseHandling": {
             "failureOutput": "simple",
-            "id": "5ccff8f8-1f3b-4292-a865-0fb833f29c68",
             "successMessage": "{{4d098304-464a-4c2a-9e5e-e43b68c13814}} was sent to Hydrus.",
             "successOutput": "message",
             "uiType": "toast"
           },
+          "retryPolicy": "wait_for_internet",
           "url": "{{790c08b8-6204-4f7f-8e8e-e6a4806017bc}}/add_urls/add_url"
         }
       ]
@@ -88,5 +113,5 @@
       "value": "\u003cEnter your client api url here\u003e"
     }
   ],
-  "version": 45
+  "version": 56
 }

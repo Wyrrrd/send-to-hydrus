@@ -1,17 +1,20 @@
 **📢 This repo is maintained and up to date.**
 
-<sup>(If it ever gets abandoned, this date will be far in the past: <i>September 1, 2022</i> )</sup>
+<sup>(If it ever gets abandoned, this date will be far in the past: <i>February 9, 2023</i> )</sup>
 
 ---
 
 # 💌 Send to Hydrus
-Share URLs on Android into Hydrus Client API
+Share files and URLs on Android into Hydrus Client API
 
 ## 🛠️ Setup
   - Download [HTTP Shortcuts](https://http-shortcuts.rmy.ch/)
-  - Import [ZIP file](https://github.com/Wyrrrd/send-to-hydrus/releases/latest/download/shortcuts.zip)
+  - Under "Import / Export", choose "Import from URL", enter<br>`https://github.com/Wyrrrd/send-to-hydrus/releases/latest/download/shortcuts.zip`
   - Set variable `hydrus_url` to your Hydrus Client API URL
-  - Perform request or set variable `hydrus_api_key` to your API key
+  - Perform request or set variable `hydrus_api_key` to your API key (needs file and URL permissions)
+
+## ⬆️️ Upgrade
+If you are using the older, URL-only version, your API key will not have the file permission. To fix this, remove the API key in Hydrus and then create or request a new one.
 
 ## 🤲 Usage
 

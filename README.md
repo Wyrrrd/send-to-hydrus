@@ -1,6 +1,6 @@
 **📢 This repo is maintained and up to date.**
 
-<sup>(If it ever gets abandoned, this date will be far in the past: <i>March 9, 2023</i> )</sup>
+<sup>(If it ever gets abandoned, this date will be far in the past: <i>April 2, 2023</i> )</sup>
 
 ---
 

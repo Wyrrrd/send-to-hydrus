@@ -5,7 +5,7 @@
 ---
 
 # 💌 Send to Hydrus
-Share files and URLs on Android into Hydrus Client API
+Share files and URLs on Android into [Hydrus](https://github.com/hydrusnetwork/hydrus) ClientAPI
 
 ## 🛠️ Setup
   - Download [HTTP Shortcuts](https://http-shortcuts.rmy.ch/)

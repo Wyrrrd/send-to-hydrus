@@ -1,11 +1,21 @@
 {
   "categories": [
     {
+      "background": "color\u003d#8886C8",
       "id": "2d3ab593-ca66-47f5-9506-c3d211b2657d",
-      "name": "Shortcuts",
+      "name": "Hydrus",
       "shortcuts": [
         {
+          "codeOnPrepare": "if (getVariable(/*[variable]*/\"790c08b8-6204-4f7f-8e8e-e6a4806017bc\"/*[/variable]*/) \u003d\u003d \"\") {\n    setVariable(/*[variable]*/\"790c08b8-6204-4f7f-8e8e-e6a4806017bc\"/*[/variable]*/, prompt(\"Please enter your Hydrus ClientAPI URL\"));\n}\n\nif (getVariable(/*[variable]*/\"790c08b8-6204-4f7f-8e8e-e6a4806017bc\"/*[/variable]*/) \u003d\u003d \"\") {\n    showToast(\"Hydrus ClientAPI URL still empty, aborting.\");\n    abort();\n}\n\nif (getVariable(/*[variable]*/\"2c7bf1c2-dabd-41fd-b572-8a67575f07c7\"/*[/variable]*/) \u003d\u003d \"\") {\n    if (confirm(\"If you want to request an API key, please start the \u0027API request\u0027 dialogue in Hydrus, then press OK. If you want to enter your API key manually, press Cancel.\")) {\n        executeShortcut(/*[shortcut]*/\"b20986e7-40c5-4287-81c9-7a32f7f41913\"/*[/shortcut]*/);\n    } else {\n        setVariable(/*[variable]*/\"2c7bf1c2-dabd-41fd-b572-8a67575f07c7\"/*[/variable]*/, promptPassword(\"Please enter your Hydrus API key\"));\n    }\n}\n\nif (getVariable(/*[variable]*/\"2c7bf1c2-dabd-41fd-b572-8a67575f07c7\"/*[/variable]*/) \u003d\u003d \"\") {\n    showToast(\"Hydrus API key still empty, aborting.\");\n    abort();\n}",
+          "description": "Asks for Hydrus URL and API key",
+          "executionType": "scripting",
+          "iconName": "custom-icon_04e0e038-6af2-4bce-91fd-bece7728a1d3.png",
+          "id": "15a66167-d819-431d-a616-46d36bafaa88",
+          "name": "Setup Hydrus Variables"
+        },
+        {
           "bodyContent": "{\n    \"url\" : \"{{4d098304-464a-4c2a-9e5e-e43b68c13814}}\",\n    \"destination_page_name\" : \"phone url import\"\n}",
+          "codeOnPrepare": "executeShortcut(/*[shortcut]*/\"15a66167-d819-431d-a616-46d36bafaa88\"/*[/shortcut]*/);",
           "codeOnSuccess": "setVariable(/*[variable]*/\"2c7bf1c2-dabd-41fd-b572-8a67575f07c7\"/*[/variable]*/, JSON.parse(response.body).access_key);",
           "contentType": "application/json",
           "description": "Request an API key from Hydrus",
@@ -23,12 +33,13 @@
         },
         {
           "bodyContent": "{\n    \"url\" : \"{{4d098304-464a-4c2a-9e5e-e43b68c13814}}\",\n    \"destination_page_name\" : \"phone url import\"\n}",
+          "codeOnPrepare": "executeShortcut(/*[shortcut]*/\"15a66167-d819-431d-a616-46d36bafaa88\"/*[/shortcut]*/);",
           "codeOnSuccess": "var toast \u003d \"API key is valid.\\n\"\nvar url \u003d JSON.parse(response.body).basic_permissions.includes(0)\nvar file \u003d JSON.parse(response.body).basic_permissions.includes(1)\n\nif (!url \u0026\u0026 !file) {\n  toast +\u003d \"All permissions missing!\";\n} else if (!url) {\n  toast +\u003d \"URL permission missing!\";\n} else if (!file) {\n  toast +\u003d \"File permission missing!\";\n}\n\nshowToast(toast);",
           "contentType": "application/json",
           "description": "Verifies API key with Hydrus",
           "headers": [
             {
-              "id": "d1eb5ba6-051a-4b44-91cb-dacda569be9d",
+              "id": "291d20d2-9729-4d65-9fa7-96cba40981cb",
               "key": "Hydrus-Client-API-Access-Key",
               "value": "{{2c7bf1c2-dabd-41fd-b572-8a67575f07c7}}"
             }
@@ -45,12 +56,13 @@
           "url": "{{790c08b8-6204-4f7f-8e8e-e6a4806017bc}}/verify_access_key"
         },
         {
+          "codeOnPrepare": "executeShortcut(/*[shortcut]*/\"15a66167-d819-431d-a616-46d36bafaa88\"/*[/shortcut]*/);",
           "codeOnSuccess": "var toast \u003d \"File \"\nvar status \u003d JSON.parse(response.body).status\n\nswitch (status) {\n case 1:\n  toast +\u003d \"was successfully imported.\";\n  break;\n case 2:\n  toast +\u003d \"already in database.\";\n  break;\n case 3:\n  toast +\u003d \"previously deleted.\";\n  break;\n case 4:\n  toast +\u003d \"failed to import.\";\n  break;\n case 7:\n  toast +\u003d \"vetoed.\";\n  break;\n}\n\nshowToast(toast);",
           "contentType": "application/octet-stream",
           "description": "Sends a file to Hydrus",
           "headers": [
             {
-              "id": "ea2f7272-29a1-4608-b0db-cfe804ff08f7",
+              "id": "220ca30b-27e0-4d2f-b4dc-88a76f492dee",
               "key": "Hydrus-Client-API-Access-Key",
               "value": "{{2c7bf1c2-dabd-41fd-b572-8a67575f07c7}}"
             }
@@ -63,7 +75,7 @@
           "responseHandling": {
             "failureOutput": "simple",
             "successMessage": "File was sent to Hydrus.",
-            "successOutput": "none",
+            "successOutput": "message",
             "uiType": "toast"
           },
           "retryPolicy": "wait_for_internet",
@@ -71,11 +83,12 @@
         },
         {
           "bodyContent": "{\n    \"url\" : \"{{4d098304-464a-4c2a-9e5e-e43b68c13814}}\",\n    \"destination_page_name\" : \"phone url import\"\n}",
+          "codeOnPrepare": "executeShortcut(/*[shortcut]*/\"15a66167-d819-431d-a616-46d36bafaa88\"/*[/shortcut]*/);",
           "contentType": "application/json",
           "description": "Sends a URL to Hydrus",
           "headers": [
             {
-              "id": "ea7dead9-05ee-4494-9ab3-67d0606428be",
+              "id": "0d5b861f-5ad7-4fb2-8661-ed856a540134",
               "key": "Hydrus-Client-API-Access-Key",
               "value": "{{2c7bf1c2-dabd-41fd-b572-8a67575f07c7}}"
             }
@@ -105,13 +118,14 @@
     },
     {
       "id": "2c7bf1c2-dabd-41fd-b572-8a67575f07c7",
-      "key": "hydrus_api_key"
+      "key": "hydrus_api_key",
+      "value": ""
     },
     {
       "id": "790c08b8-6204-4f7f-8e8e-e6a4806017bc",
       "key": "hydrus_url",
-      "value": "\u003cEnter your client api url here\u003e"
+      "value": ""
     }
   ],
-  "version": 56
+  "version": 59
 }

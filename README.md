@@ -9,7 +9,7 @@ Share files and URLs on Android into [Hydrus](https://github.com/hydrusnetwork/h
 
 ## 🛠️ Setup
   - Download [HTTP Shortcuts](https://http-shortcuts.rmy.ch/)
-  - Click [here](https://http-shortcuts.rmy.ch/import?url=https%3A%2F%2Fhttp-shortcuts.rmy.ch%2Fhttps%3A%2F%2Fgithub.com%2FWyrrrd%2Fsend-to-hydrus%2Freleases%2Flatest%2Fdownload%2Fshortcuts.zip) to import
+  - Click [here](https://http-shortcuts.rmy.ch/import?url=https%3A%2F%2Fgithub.com%2FWyrrrd%2Fsend-to-hydrus%2Freleases%2Flatest%2Fdownload%2Fshortcuts.zip) to import
   - On first use, this will ask for your Hydrus ClientAPI URL and walk you through API key generation, but you can also set the variables `hydrus_url` and `hydrus_api_key` manually
 
 ## 🔑 Permissions
